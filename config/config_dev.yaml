@@ -1,6 +1,6 @@
 # 基础配置
 app:
-  port: 8000
+  port: 8080
 database:
   driver: mysql
   source: root:123456@tcp(127.0.0.1:3306)/vesgo?charset=utf8mb4&parseTime=True&loc=Local
