@@ -7,6 +7,7 @@ import (
 	"vesgo/api"
 	"vesgo/config"
 	"vesgo/initializers"
+	"vesgo/middleware"
 )
 
 /*
@@ -29,7 +30,9 @@ func Run() {
 		return
 	}
 
-	r := gin.Default()
+	r := gin.New()
+	r.Use(middleware.Logger())
+	r.Use(gin.Recovery())
 	api.SetupRoutes(r, initializers.Engine)
 
 	err = r.Run(fmt.Sprintf(":%d", config.Conf.App.Port))
