@@ -32,7 +32,8 @@ func Run() {
 
 	r := gin.New()
 	r.Use(middleware.Logger())
-	r.Use(gin.Recovery())
+	r.Use(middleware.CustomRecovery())
+	r.Use(middleware.ErrorHandler())
 	api.SetupRoutes(r, initializers.Engine)
 
 	err = r.Run(fmt.Sprintf(":%d", config.Conf.App.Port))

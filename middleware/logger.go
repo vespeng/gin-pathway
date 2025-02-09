@@ -12,7 +12,6 @@ import (
 @Desc   : 日志中间件
 */
 
-// Logger 使用 logrus 记录请求日志
 func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 开始时间
@@ -30,6 +29,7 @@ func Logger() gin.HandlerFunc {
 		statusCode := c.Writer.Status()
 		path := c.Request.URL.Path
 
+		// 记录日志
 		logrus.WithFields(logrus.Fields{
 			"status_code": statusCode,
 			"latency":     latency,
