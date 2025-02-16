@@ -32,7 +32,7 @@ func Run() {
 
 	r := gin.New()
 	r.Use(middleware.Logger())
-	r.Use(middleware.CustomRecovery())
+	r.Use(middleware.Recovery())
 	r.Use(middleware.ErrorHandler())
 	api.SetupRoutes(r, initializers.Engine)
 
@@ -45,7 +45,11 @@ func Run() {
 
 // InitializeAll 初始化所有模块
 func InitializeAll() error {
-	err := initializers.InitializeDB()
+	err := initializers.InitializeLogger()
+	if err != nil {
+		return fmt.Errorf("日志初始化错误: %v", err)
+	}
+	err = initializers.InitializeDB()
 	if err != nil {
 		return fmt.Errorf("MySQL初始化错误: %v", err)
 	}
@@ -53,10 +57,6 @@ func InitializeAll() error {
 	if err != nil {
 		return fmt.Errorf("redis初始化错误: %v", err)
 	}*/
-	err = initializers.InitializeLogger()
-	if err != nil {
-		return fmt.Errorf("日志初始化错误: %v", err)
-	}
 
 	return nil
 }

@@ -1,8 +1,8 @@
 package initializers
 
 import (
-	"fmt"
 	"github.com/go-redis/redis/v8"
+	log "github.com/sirupsen/logrus"
 	"vesgo/config"
 )
 
@@ -23,10 +23,11 @@ func InitializeRedis() error {
 		DB:       config.Conf.Redis.Db,
 	})
 
-	// 测试数据库连接
+	// 测试Redis连接
 	_, err := RedisClient.Ping(RedisClient.Context()).Result()
 	if err != nil {
-		return fmt.Errorf("redis初始化失败: %v", err)
+		log.Error("redis初始化失败: %v", err)
+		return err
 	}
 
 	return nil

@@ -31,26 +31,26 @@ func NewAppError(httpStatus, code int, message string) *AppError {
 }
 
 func ErrorHandler() gin.HandlerFunc {
-	return func(ctx *gin.Context) {
-		ctx.Next()
+	return func(c *gin.Context) {
+		c.Next()
 		// 检查是否有错误
-		if len(ctx.Errors) > 0 {
-			err := ctx.Errors.Last()
+		if len(c.Errors) > 0 {
+			err := c.Errors.Last()
 			var appErr *AppError
 			if errors.As(err, &appErr) {
 				// 自定义业务错误
-				ctx.JSON(appErr.HTTPStatus, gin.H{
+				c.JSON(appErr.HTTPStatus, gin.H{
 					"code":    appErr.Code,
 					"message": appErr.Message,
 				})
 			} else {
 				// 非自定义错误（如 Go 原生 error）
-				ctx.JSON(http.StatusInternalServerError, gin.H{
+				c.JSON(http.StatusInternalServerError, gin.H{
 					"code":    500,
 					"message": "Internal server error",
 				})
 			}
-			ctx.Abort()
+			c.Abort()
 		}
 	}
 }

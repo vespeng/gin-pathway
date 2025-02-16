@@ -12,12 +12,12 @@ import (
 @Desc   : 自定义恢复中间件
 */
 
-func CustomRecovery() gin.HandlerFunc {
-	return func(ctx *gin.Context) {
+func Recovery() gin.HandlerFunc {
+	return func(c *gin.Context) {
 		defer func() {
 			if r := recover(); r != nil {
 				// 记录 Panic
-				log.Printf("Recovered from panic: %v", r)
+				log.Warnf("Recovered from panic: %v", r)
 
 				// 将 Panic 转换为统一的错误格式
 				err := NewAppError(
@@ -27,15 +27,15 @@ func CustomRecovery() gin.HandlerFunc {
 				)
 
 				// 返回统一的错误响应
-				ctx.JSON(err.HTTPStatus, gin.H{
+				c.JSON(err.HTTPStatus, gin.H{
 					"code":    err.Code,
 					"message": err.Message,
 				})
 
 				// 中断请求
-				ctx.Abort()
+				c.Abort()
 			}
 		}()
-		ctx.Next()
+		c.Next()
 	}
 }
