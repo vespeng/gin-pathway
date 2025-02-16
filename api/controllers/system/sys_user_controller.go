@@ -6,16 +6,22 @@ import (
 	"vesgo/internal/system/services"
 )
 
-type UserController struct {
-	userService *services.UserService
+/*
+@Author : Vespeng
+@Time   : 2025/2/16
+@Desc   : 系统用户控制器
+*/
+
+type SysUserController struct {
+	sysUserService *services.SysUserService
 }
 
-func NewUserController(userService *services.UserService) *UserController {
-	return &UserController{userService: userService}
+func NewSysUserController(sysUserService *services.SysUserService) *SysUserController {
+	return &SysUserController{sysUserService: sysUserService}
 }
 
-func (uc *UserController) GetUsers(c *gin.Context) {
-	users, err := uc.userService.GetUsers()
+func (uc *SysUserController) GetSysUsers(c *gin.Context) {
+	users, err := uc.sysUserService.GetSysUsers()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch users"})
 		return
