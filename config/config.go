@@ -7,12 +7,6 @@ import (
 	"os"
 )
 
-/*
-@Author : Vespeng
-@Time   : 2025/1/20
-@Desc   : 配置文件
-*/
-
 type Config struct {
 	App      AppConfig      `yaml:"app" mapstructure:"app"`
 	Database DatabaseConfig `yaml:"database" mapstructure:"database"`

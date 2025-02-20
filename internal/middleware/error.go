@@ -6,12 +6,6 @@ import (
 	"net/http"
 )
 
-/*
-@Author : Vespeng
-@Time   : 2025/2/9
-@Desc   : 错误处理中间件
-*/
-
 type AppError struct {
 	HTTPStatus int    // HTTP 状态码（如 404）
 	Code       int    // 业务错误码（如 40401）

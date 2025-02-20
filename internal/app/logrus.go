@@ -1,18 +1,12 @@
-package initializers
+package app
 
 import (
+	"gin-pathway/config"
 	"github.com/lestrrat-go/file-rotatelogs"
 	log "github.com/sirupsen/logrus"
 	"os"
 	"time"
-	"vesgo/config"
 )
-
-/*
-@Author : Vespeng
-@Time   : 2025/1/20
-@Desc   : 初始化日志文件
-*/
 
 // InitializeLogger 设置日志输出并初始化日志文件
 func InitializeLogger() error {

@@ -6,12 +6,6 @@ import (
 	"net/http"
 )
 
-/*
-@Author : Vespeng
-@Time   : 2025/2/9
-@Desc   : 自定义恢复中间件
-*/
-
 func Recovery() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		defer func() {

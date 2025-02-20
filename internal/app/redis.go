@@ -1,16 +1,10 @@
-package initializers
+package app
 
 import (
+	"gin-pathway/config"
 	"github.com/go-redis/redis/v8"
 	log "github.com/sirupsen/logrus"
-	"vesgo/config"
 )
-
-/*
-@Author : Vespeng
-@Time   : 2025/1/20
-@Desc   : redis初始化
-*/
 
 var RedisClient *redis.Client
 

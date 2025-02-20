@@ -1,4 +1,4 @@
-module vesgo
+module gin-pathway
 
 go 1.23
 

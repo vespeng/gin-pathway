@@ -1,20 +1,13 @@
-package cmd
+package app
 
 import (
 	"fmt"
+	"gin-pathway/config"
+	"gin-pathway/internal/api/v1"
+	"gin-pathway/internal/middleware"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	"vesgo/api"
-	"vesgo/config"
-	"vesgo/initializers"
-	"vesgo/middleware"
 )
-
-/*
-@Author : Vespeng
-@Time   : 2025/2/7
-@Desc   : 启动服务
-*/
 
 // Run 启动服务
 func Run() {
@@ -31,10 +24,9 @@ func Run() {
 	}
 
 	r := gin.New()
-	r.Use(middleware.Logger())
 	r.Use(middleware.Recovery())
 	r.Use(middleware.ErrorHandler())
-	api.SetupRoutes(r, initializers.Engine)
+	v1.SetupRoutes(r, Engine)
 
 	err = r.Run(fmt.Sprintf(":%d", config.Conf.App.Port))
 	if err != nil {
@@ -45,11 +37,11 @@ func Run() {
 
 // InitializeAll 初始化所有模块
 func InitializeAll() error {
-	err := initializers.InitializeLogger()
+	err := InitializeLogger()
 	if err != nil {
 		return fmt.Errorf("日志初始化错误: %v", err)
 	}
-	err = initializers.InitializeDB()
+	err = InitializeDB()
 	if err != nil {
 		return fmt.Errorf("MySQL初始化错误: %v", err)
 	}
