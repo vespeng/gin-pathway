@@ -35,6 +35,7 @@ gin-pathway/
 ├── pkg/                     # 第三方依赖或公共工具包
 ├── scripts/                 # 脚本文件，如项目部署脚本等
 ├── test/                    # 单元测试文件
+├── .env                     # 环境变量文件
 ├── go.mod                   # Go 模块管理文件
 ├── go.sum                   # Go 模块依赖校验文件
 └── README.md                # 项目说明文档
