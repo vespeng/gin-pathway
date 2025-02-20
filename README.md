@@ -16,18 +16,19 @@ gin-pathway 是一个基于 Gin 框架的目录结构示例项目，旨在为开
 - 灵活性：可以根据实际需求调整目录结构，满足不同项目的个性化要求。
 
 ## 目录结构示例
-```
+```html
 gin-pathway/
 ├── cmd/                     # 应用启动入口
 │   └── main.go              # 主程序入口
-├── configs/                 # 配置文件存放目录
+├── config/                  # 配置文件存放目录
 │   └── config.yaml          # 示例配置文件
+├── docs/                    # 文档文件，如 Swagger api 等
 ├── internal/                # 内部包，存放核心业务逻辑
 │   ├── api/                 # 版本路由
 │   ├── app/                 # 包括应用程序启动、初始化等逻辑
 │   ├── controller/          # HTTP 请求处理函数
 │   ├── middleware/          # 中间件
-│   ├── model/               # 数据模型定义
+│   ├── models/               # 数据模型定义
 │   ├── repositories/        # 数据访问层
 │   ├── services/            # 业务逻辑层
 │   └── utils/               # 工具函数
