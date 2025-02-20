@@ -1,7 +1,7 @@
 package utils
 
 import (
-	models "gin-pathway/internal/model"
+	"gin-pathway/internal/models"
 	"github.com/go-xorm/xorm"
 )
 

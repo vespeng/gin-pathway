@@ -26,9 +26,9 @@ gin-pathway/
 ├── internal/                # 内部包，存放核心业务逻辑
 │   ├── api/                 # 版本路由
 │   ├── app/                 # 包括应用程序启动、初始化等逻辑
-│   ├── controller/          # HTTP 请求处理函数
+│   ├── controllers/         # HTTP 请求处理函数
 │   ├── middleware/          # 中间件
-│   ├── models/               # 数据模型定义
+│   ├── models/              # 数据模型定义
 │   ├── repositories/        # 数据访问层
 │   ├── services/            # 业务逻辑层
 │   └── utils/               # 工具函数
