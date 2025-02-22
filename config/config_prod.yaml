@@ -1,0 +1,14 @@
+# 基础配置
+app:
+  port: 9000
+database:
+  driver: mysql
+  source: root:123456@tcp(127.0.0.1:3306)/gin-pathway?charset=utf8mb4&parseTime=True&loc=Local
+redis:
+  addr: localhost:6379
+  password:
+  db: 0
+log:
+  format: json
+  level: info
+  report_caller: false
