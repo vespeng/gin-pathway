@@ -9,8 +9,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// Run 启动服务
-func Run() {
+// Start 启动服务
+func Start() {
 	err := config.LoadConfig()
 	if err != nil {
 		log.Error("配置文件加载错误: %v", err)
