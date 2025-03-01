@@ -27,7 +27,7 @@ func InitializeDB() error {
 	}
 
 	// 在应用启动时同步数据库
-	if err := utils.SyncDatabase(Engine); err != nil {
+	if err = utils.SyncDatabase(Engine); err != nil {
 		return err
 	}
 

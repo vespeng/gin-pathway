@@ -24,6 +24,7 @@ func Start() {
 	}
 
 	r := gin.New()
+	r.Use(middleware.Logger())
 	r.Use(middleware.Recovery())
 	r.Use(middleware.ErrorHandler())
 	v1.SetupRoutes(r, Engine)

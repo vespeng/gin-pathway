@@ -10,5 +10,5 @@ redis:
   db: 0
 log:
   format: json
-  level: warn
+  level: debug
   report_caller: false

@@ -4,6 +4,7 @@ import (
 	"gin-pathway/config"
 	"github.com/lestrrat-go/file-rotatelogs"
 	log "github.com/sirupsen/logrus"
+	"io"
 	"os"
 	"time"
 )
@@ -44,7 +45,8 @@ func InitializeLogger() error {
 	logDir := "../logs"
 	err := os.MkdirAll(logDir, 0755)
 	if err != nil {
-		log.Fatalf("创建日志目录失败: %v", err)
+		log.Error("创建日志目录失败: %v", err)
+		return err
 	}
 
 	// 设置日志输出，按天切割
@@ -56,9 +58,12 @@ func InitializeLogger() error {
 		rotatelogs.WithRotationTime(24*time.Hour), // 每天切割一次
 	)
 	if err != nil {
-		log.Fatalf("设置日志输出失败: %v", err)
+		log.Error("设置日志输出失败: %v", err)
+		return err
 	}
-	log.SetOutput(writer)
+
+	multiWriter := io.MultiWriter(os.Stdout, writer)
+	log.SetOutput(multiWriter)
 
 	return nil
 }
