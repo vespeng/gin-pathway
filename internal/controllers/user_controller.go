@@ -7,15 +7,15 @@ import (
 )
 
 type UserController struct {
-	UserService *services.UserService
+	userService *services.UserService
 }
 
 func NewUserController(UserService *services.UserService) *UserController {
-	return &UserController{UserService: UserService}
+	return &UserController{userService: UserService}
 }
 
 func (uc *UserController) GetUsers(c *gin.Context) {
-	users, err := uc.UserService.GetUsers()
+	users, err := uc.userService.GetUsers()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch users"})
 		return
