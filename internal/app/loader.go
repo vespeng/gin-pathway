@@ -2,8 +2,9 @@ package app
 
 import (
 	"fmt"
-	"gin-pathway/config"
 	"gin-pathway/internal/api/v1"
+	"gin-pathway/internal/app/config"
+	"gin-pathway/internal/app/initializer"
 	"gin-pathway/internal/middleware"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -27,7 +28,7 @@ func Start() {
 	r.Use(middleware.Logger())
 	r.Use(middleware.Recovery())
 	r.Use(middleware.ErrorHandler())
-	v1.SetupRoutes(r, Engine)
+	v1.SetupRoutes(r, initializer.Engine)
 
 	err = r.Run(fmt.Sprintf(":%d", config.Conf.App.Port))
 	if err != nil {
@@ -38,18 +39,17 @@ func Start() {
 
 // InitializeAll 初始化所有模块
 func InitializeAll() error {
-	err := InitializeLogger()
+	err := initializer.InitializeLogger()
 	if err != nil {
 		return fmt.Errorf("日志初始化错误: %v", err)
 	}
-	err = InitializeDB()
+	err = initializer.InitializeDB()
 	if err != nil {
 		return fmt.Errorf("MySQL初始化错误: %v", err)
 	}
-	/*err = initializers.InitializeRedis()
+	err = initializer.InitializeRedis()
 	if err != nil {
 		return fmt.Errorf("redis初始化错误: %v", err)
-	}*/
-
+	}
 	return nil
 }

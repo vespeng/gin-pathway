@@ -1,7 +1,7 @@
-package app
+package initializer
 
 import (
-	"gin-pathway/config"
+	"gin-pathway/internal/app/config"
 	"github.com/go-redis/redis/v8"
 	log "github.com/sirupsen/logrus"
 )

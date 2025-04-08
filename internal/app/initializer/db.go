@@ -1,7 +1,7 @@
-package app
+package initializer
 
 import (
-	"gin-pathway/config"
+	"gin-pathway/internal/app/config"
 	"gin-pathway/internal/utils"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"

@@ -52,7 +52,7 @@ func LoadConfig() error {
 	}
 
 	// 设置配置文件路径和名称
-	viper.AddConfigPath("./config")
+	viper.AddConfigPath("./configs")
 	viper.SetConfigName(fmt.Sprintf("config_%s", env))
 	viper.SetConfigType("yaml")
 
