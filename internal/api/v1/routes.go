@@ -1,8 +1,8 @@
 package v1
 
 import (
-	"gin-pathway/internal/controllers"
-	"gin-pathway/internal/services"
+	"gin-pathway/internal/controller"
+	"gin-pathway/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/go-xorm/xorm"
 )
@@ -13,9 +13,9 @@ func SetupRoutes(r *gin.Engine, engine *xorm.Engine) {
 	user := r.Group("/user")
 	{
 		// 创建 UserService 实例
-		UserService := services.NewUserService(engine)
+		UserService := service.NewUserService(engine)
 		// 创建 UserController 实例
-		UserController := controllers.NewUserController(UserService)
+		UserController := controller.NewUserController(UserService)
 
 		user.GET("/", UserController.GetUsers)
 	}

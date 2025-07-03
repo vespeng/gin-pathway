@@ -1,7 +1,7 @@
-package repositories
+package repository
 
 import (
-	"gin-pathway/internal/models"
+	"gin-pathway/internal/model"
 	"github.com/go-xorm/xorm"
 )
 
@@ -14,8 +14,8 @@ func NewUserRepository(engine *xorm.Engine) *UserRepository {
 }
 
 // GetUsers 获取所有用户
-func (r *UserRepository) GetUsers() ([]*models.User, error) {
-	var users []*models.User
-	err := r.engine.Table(models.User{}.TableName()).Find(&users)
+func (r *UserRepository) GetUsers() ([]*model.User, error) {
+	var users []*model.User
+	err := r.engine.Table(model.User{}.TableName()).Find(&users)
 	return users, err
 }

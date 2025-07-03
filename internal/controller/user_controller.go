@@ -1,16 +1,16 @@
-package controllers
+package controller
 
 import (
-	"gin-pathway/internal/services"
+	"gin-pathway/internal/service"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type UserController struct {
-	userService *services.UserService
+	userService *service.UserService
 }
 
-func NewUserController(UserService *services.UserService) *UserController {
+func NewUserController(UserService *service.UserService) *UserController {
 	return &UserController{userService: UserService}
 }
 
