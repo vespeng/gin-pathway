@@ -20,7 +20,7 @@ func InitializeRedis() error {
 	// 测试Redis连接
 	_, err := RedisClient.Ping(RedisClient.Context()).Result()
 	if err != nil {
-		log.Error("redis初始化失败: %v", err)
+		log.Errorf("redis初始化失败: %v", err)
 		return err
 	}
 

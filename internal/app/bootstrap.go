@@ -14,13 +14,13 @@ import (
 func Start() {
 	err := config.LoadConfig()
 	if err != nil {
-		log.Error("配置文件加载错误: %v", err)
+		log.Errorf("配置文件加载错误: %v", err)
 		return
 	}
 
 	err = InitializeAll()
 	if err != nil {
-		log.Error("模块初始化错误: %v", err)
+		log.Errorf("模块初始化错误: %v", err)
 		return
 	}
 
@@ -32,7 +32,7 @@ func Start() {
 
 	err = r.Run(fmt.Sprintf(":%d", config.Conf.App.Port))
 	if err != nil {
-		log.Error("服务启动错误: %v", err)
+		log.Errorf("服务启动错误: %v", err)
 		return
 	}
 }

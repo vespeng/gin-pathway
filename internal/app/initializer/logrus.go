@@ -45,7 +45,7 @@ func InitializeLogger() error {
 	logDir := "../logs"
 	err := os.MkdirAll(logDir, 0755)
 	if err != nil {
-		log.Error("创建日志目录失败: %v", err)
+		log.Errorf("创建日志目录失败: %v", err)
 		return err
 	}
 
@@ -58,7 +58,7 @@ func InitializeLogger() error {
 		rotatelogs.WithRotationTime(24*time.Hour), // 每天切割一次
 	)
 	if err != nil {
-		log.Error("设置日志输出失败: %v", err)
+		log.Errorf("设置日志输出失败: %v", err)
 		return err
 	}
 
