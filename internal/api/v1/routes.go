@@ -3,6 +3,7 @@ package v1
 import (
 	"gin-pathway/internal/controller"
 	"gin-pathway/internal/service"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-xorm/xorm"
 )

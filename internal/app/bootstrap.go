@@ -6,6 +6,7 @@ import (
 	"gin-pathway/internal/app/config"
 	"gin-pathway/internal/app/initializer"
 	"gin-pathway/internal/middleware"
+
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )

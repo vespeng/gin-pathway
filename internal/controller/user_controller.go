@@ -2,8 +2,9 @@ package controller
 
 import (
 	"gin-pathway/internal/service"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type UserController struct {

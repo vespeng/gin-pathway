@@ -2,11 +2,12 @@ package initializer
 
 import (
 	"gin-pathway/internal/app/config"
-	"github.com/lestrrat-go/file-rotatelogs"
-	log "github.com/sirupsen/logrus"
 	"io"
 	"os"
 	"time"
+
+	"github.com/lestrrat-go/file-rotatelogs"
+	log "github.com/sirupsen/logrus"
 )
 
 // InitializeLogger 设置日志输出并初始化日志文件

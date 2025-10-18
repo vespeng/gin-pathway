@@ -2,9 +2,10 @@ package config
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
-	"os"
 )
 
 type Config struct {
