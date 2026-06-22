@@ -40,8 +40,6 @@ gin-pathway/
 ├── go.sum                   # Go 模块依赖校验文件
 └── README.md                # 项目说明文档
 ```
-针对项目目录的详细介绍，可参考如下链接：
-[Go 项目实战：搭建高效的 Gin Web 目录结构](https://vespeng.github.io/posts/go-practical-gin-directory-structure/)
 
 ## 使用方法
 1. 克隆项目到本地
