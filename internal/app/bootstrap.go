@@ -2,9 +2,9 @@ package app
 
 import (
 	"fmt"
-	"gin-pathway/internal/api/v1"
 	"gin-pathway/internal/app/config"
-	"gin-pathway/internal/app/initializer"
+	"gin-pathway/internal/app/setup"
+	"gin-pathway/internal/biz/user"
 	"gin-pathway/internal/middleware"
 
 	"github.com/gin-gonic/gin"
@@ -19,7 +19,7 @@ func Start() {
 		return
 	}
 
-	err = InitializeAll()
+	err = setupDependencies()
 	if err != nil {
 		log.Errorf("模块初始化错误: %v", err)
 		return
@@ -29,7 +29,9 @@ func Start() {
 	r.Use(middleware.Logger())
 	r.Use(middleware.Recovery())
 	r.Use(middleware.ErrorHandler())
-	v1.SetupRoutes(r, initializer.Engine)
+
+	v1 := r.Group("/api/v1")
+	user.RegisterRoutes(v1, setup.Engine)
 
 	err = r.Run(fmt.Sprintf(":%d", config.Conf.App.Port))
 	if err != nil {
@@ -38,17 +40,17 @@ func Start() {
 	}
 }
 
-// InitializeAll 初始化所有模块
-func InitializeAll() error {
-	err := initializer.InitializeLogger()
+// setupDependencies 初始化应用依赖
+func setupDependencies() error {
+	err := setup.Logger()
 	if err != nil {
 		return fmt.Errorf("日志初始化错误: %v", err)
 	}
-	err = initializer.InitializeDB()
+	err = setup.DB()
 	if err != nil {
 		return fmt.Errorf("MySQL初始化错误: %v", err)
 	}
-	err = initializer.InitializeRedis()
+	err = setup.Redis()
 	if err != nil {
 		return fmt.Errorf("redis初始化错误: %v", err)
 	}

@@ -1,4 +1,4 @@
-package initializer
+package setup
 
 import (
 	"gin-pathway/internal/app/config"
@@ -6,12 +6,12 @@ import (
 	"os"
 	"time"
 
-	"github.com/lestrrat-go/file-rotatelogs"
+	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	log "github.com/sirupsen/logrus"
 )
 
-// InitializeLogger 设置日志输出并初始化日志文件
-func InitializeLogger() error {
+// Logger 设置日志输出并初始化日志文件
+func Logger() error {
 	// 设置日志格式
 	switch config.Conf.Log.Format {
 	case "json":

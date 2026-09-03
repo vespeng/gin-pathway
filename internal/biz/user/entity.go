@@ -1,4 +1,4 @@
-package model
+package user
 
 type User struct {
 	Id          int64  `xorm:"pk autoincr 'id'"`
@@ -7,7 +7,7 @@ type User struct {
 	UserName    string `xorm:"varchar(30) 'user_name'"`
 	Email       string `xorm:"varchar(50) 'email'"`
 	PhoneNumber int64  `xorm:"'phone_number'"`
-	Sex         string `xorm:"char(1) 'sex'"`
+	Gender      string `xorm:"char(1) 'gender'"`
 	Remark      string `xorm:"varchar(500) 'remark'"`
 }
 
