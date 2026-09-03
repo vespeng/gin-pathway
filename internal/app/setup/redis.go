@@ -1,4 +1,4 @@
-package initializer
+package setup
 
 import (
 	"gin-pathway/internal/app/config"
@@ -9,8 +9,8 @@ import (
 
 var RedisClient *redis.Client
 
-// InitializeRedis 初始化Redis
-func InitializeRedis() error {
+// Redis 初始化Redis
+func Redis() error {
 	// 创建Redis客户端
 	RedisClient = redis.NewClient(&redis.Options{
 		Addr:     config.Conf.Redis.Addr,

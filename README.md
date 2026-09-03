@@ -18,27 +18,42 @@ gin-pathway 是一个基于 Gin 框架的目录结构示例项目，旨在为开
 ## 目录结构示例
 ```html
 gin-pathway/
-├── cmd/                     # 应用启动入口
-│   └── main.go              # 主程序入口
-├── configs/                 # 配置文件存放目录
-│   └── config.yaml          # 示例配置文件
-├── docs/                    # 文档文件，如 Swagger api 等
-├── internal/                # 内部包，存放核心业务逻辑
-│   ├── api/                 # 版本路由
-│   ├── app/                 # 包括应用程序启动、初始化等逻辑
-│   ├── controller/          # HTTP 请求处理函数
-│   ├── middleware/          # 中间件
-│   ├── model/               # 数据模型定义
-│   ├── repository/          # 数据访问层
-│   ├── service/             # 业务逻辑层
-│   └── utils/               # 工具函数
-├── pkg/                     # 第三方依赖或公共工具包
-├── scripts/                 # 脚本文件，如项目部署脚本等
-├── tests/                   # 单元测试文件
-├── .env                     # 环境变量文件
-├── go.mod                   # Go 模块管理文件
-├── go.sum                   # Go 模块依赖校验文件
-└── README.md                # 项目说明文档
+├── cmd/                          # 应用启动入口
+│   └── main.go                   # 主程序入口
+├── configs/                      # 配置文件存放目录（按环境拆分）
+│   ├── config_dev.yaml           # 开发环境配置
+│   ├── config_test.yaml          # 测试环境配置
+│   └── config_prod.yaml          # 生产环境配置
+├── docs/                         # 文档文件，如 Swagger api 等
+├── internal/                     # 内部包，存放核心业务逻辑
+│   ├── app/                      # 应用装配：启动、配置、依赖初始化
+│   │   ├── bootstrap.go          # 启动编排（配置 → 依赖 → 路由 → 监听）
+│   │   ├── config/               # 配置加载，导出全局 Conf
+│   │   │   └── config.go
+│   │   └── setup/                # 基础设施初始化器
+│   │       ├── db.go             # MySQL（xorm）初始化
+│   │       ├── logrus.go         # 日志初始化
+│   │       └── redis.go          # Redis 初始化
+│   ├── biz/                      # 业务领域层（按模块垂直切分）
+│   │   └── user/                 # 用户模块
+│   │       ├── entity.go         # 数据模型定义
+│   │       ├── repository.go     # 数据访问层
+│   │       ├── service.go        # 业务逻辑层
+│   │       ├── handler.go        # HTTP 请求处理函数
+│   │       └── router.go         # 组装依赖并注册本模块路由
+│   ├── middleware/               # 中间件
+│   │   ├── error.go              # 统一错误响应
+│   │   ├── logger.go             # 请求日志
+│   │   └── recovery.go           # Panic 恢复
+│   └── utils/                    # 工具函数
+│       └── sync_db.go            # 同步数据表结构
+├── pkg/                          # 第三方依赖或公共工具包
+├── scripts/                      # 脚本文件，如项目部署脚本等
+├── tests/                        # 单元测试文件
+├── .env                          # 环境变量文件（APP_ENV 指定运行环境）
+├── go.mod                        # Go 模块管理文件
+├── go.sum                        # Go 模块依赖校验文件
+└── README.md                     # 项目说明文档
 ```
 
 ## 使用方法
